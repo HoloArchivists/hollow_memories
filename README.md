@@ -1,9 +1,22 @@
 # Youtube Archive Tutorial
-
 This tutorial covers setting up and using `youtube-dl` to download videos, playlists and channels.
 
+## Table of Contents
+- [Prerequisites](#prerequisites)
+  - [Getting youtube-dl](#getting-youtube-dl)
+  - [Getting FFmpeg](#getting-ffmpeg)
+  - [Getting AtomicParsley](#getting-atomicparsley)
+- [Using youtube-dl](#using-youtube-dl)
+  - [Downloading a single video](#downloading-a-single-video)
+  - [Downloading a playlist](#downloading-a-playlist)
+  - [Downloading all playlists from a channel](#downloading-all-playlists-from-a-channel)
+  - [Downloading a members only video](#downloading-a-members-only-video)
+  - [Archiving a channel](#archiving-a-channel)
+- [Downloading a livestream as it is occurring](#downloading-a-livestream-as-it-is-occurring)
+- [FAQ](#faq)
+
 ## Prerequisites
-### Get youtube-dl
+### Getting youtube-dl
 1. Go to https://yt-dl.org/downloads/latest/youtube-dl.exe to download youtube-dl.
 2. From your `Downloads` folder, move `youtube-dl.exe` to a permanent location.
 3. Open cmd with Administrator permissions
@@ -19,7 +32,7 @@ setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
 6. Open a new cmd window (not administrator mode)
 7. Run the command `youtube-dl --version`, you should get an output like `2021.03.14` if you set everything up correctly. 
 
-### Get FFmpeg
+### Getting FFmpeg
 1. Go to https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z to download FFmpeg.
 2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
 3. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
@@ -28,7 +41,7 @@ setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
 If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
 5. Run the command `ffmpeg -version`, you should get an output like `ffmpeg version 2.2.2` along with other text if you set everything up correctly.
 
-### Get AtomicParsley
+### Getting AtomicParsley
 > This is optional, it will allow you to create `.mp4` files with thumbnails from the youtube video. Currently this guide does not make use of AtomicParsley.
 1. Go to https://sourceforge.net/projects/atomicparsley/files/latest/download to download AtomicParsley.
 3. Extract the the downloaded zip file
@@ -40,7 +53,6 @@ If you were to store the folder at `C:\Program Files\AtomicParsley` then you wou
 
 ## Using youtube-dl
 >The following examples download as `.mkv` files otherwise stated. See the [FAQ section](#faq) below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.
-
 ### Downloading a single video
 1. Open cmd.
 2. Run one of the following `youtube-dl` commands after replacing the youtube link with a link to the video you want to download.
@@ -136,7 +148,7 @@ Unlisted videos can be downloaded using the instructions in [Downloading a singl
 
 You can create scheduled tasks to periodically run your archival commands to stay up to date automatically. 
 
-## Download a livestream as it is occurring
+## Downloading a livestream as it is occurring
 Livestreams can be captured and downloaded as they are airing.
 
 Refer to [this guide](archiving_livestreams.md).
