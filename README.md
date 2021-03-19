@@ -23,7 +23,7 @@ setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
 1. Go to https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z to download FFmpeg.
 2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
 3. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
-4. Repeat steps 4 and 5 from `Get youtube-dl` section but this time using the folder for where `ffmpeg.exe` is.
+4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `ffmpeg.exe` is.
 >Example:
 If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
 5. Run the command `ffmpeg -version`, you should get an output like `ffmpeg version 2.2.2` along with other text if you set everything up correctly.
@@ -33,13 +33,13 @@ If you were to store the folder at `C:\Program Files\ffmpeg` then you would run 
 1. Go to https://sourceforge.net/projects/atomicparsley/files/latest/download to download AtomicParsley.
 3. Extract the the downloaded zip file
 4. Inside the extracted files, copy the folder `AtomicParley-win32-x.x.x` to a permanent location. You may want to rename the folder to `AtomicParsley`.
-4. Repeat steps 4 and 5 from `Get youtube-dl` section but this time using the folder for where `AtomicParsley.exe` is.
+4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `AtomicParsley.exe` is.
 >Example: 
 If you were to store the folder at `C:\Program Files\AtomicParsley` then you would run `setx /M PATH "%PATH%;C:\Program Files\AtomicParsley`. `AtomicParsley.exe` should be located in `C:\Program Files\AtomicParsley`.
 6. You should now be able to run the command `AtomicParsley`.
 
 ## Using youtube-dl
->The following examples download as `.mkv` files otherwise stated. See the FAQ section below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.
+>The following examples download as `.mkv` files otherwise stated. See the [FAQ section](#faq) below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.
 
 ### Downloading a single video
 1. Open cmd.
@@ -90,7 +90,8 @@ youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58D
 ```
 
 ### Downloading all playlists from a channel
-In this example you will create a folder for the channel and all the playlists will be downloaded to their own folders inside the channel folder. An archive file is going to be used to prevent redownloading if `youtube-dl` stops working (such as your computer going to sleep). Due to technical constrains, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video. If you do not want this behavior, then refer to instructions from `To download a playlist` section. Generally, videos are not repeated in playlists on Hololivers' channels.
+In this example you will create a folder for the channel and all the playlists will be downloaded to their own folders inside the channel folder. An archive file is going to be used to prevent redownloading if `youtube-dl` stops working (such as your computer going to sleep). Due to technical constrains, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video. If you do not want this behavior, then refer to instructions from [Downloading a playlist
+](##downloading-a-playlist). Generally, videos are not repeated in playlists on Hololivers' channels.
 
 1. Create a folder where all the playlists will be downloaded.
 2. Open cmd.
@@ -105,7 +106,7 @@ youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A/playlists -r
 ```
 
 ### Downloading a members only video
-> Make sure you have membership of the channel and are logged into YouTube or it will not work.
+Make sure you have membership of the channel and are logged into YouTube or it will not work.
 1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from youtube which will be used to authenticate `youtube-dl`.
 2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click get cookies for `Current Site`. Save the cookies to a location of your choice. In this example we will use `C:\Users\anon\Desktop\youtube-cookies.txt`
 > Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
@@ -131,7 +132,7 @@ youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A -r 1M --add-
 
 To get a more complete collection of the channel will require some ingenuity on your part. You can download all the playlists on the channel and then run the command for archiving the channel to download all the videos that are not in a playlist on the channel. As long as `youtube-dl` targets the same archive file in `--download-archive <FILE>`, it will not download videos previously listed in the archive file. 
 
-Unlisted videos can be downloaded using the instructions in `To download a single video` section. Use `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` as the file name to get the same file name format as the command above.
+Unlisted videos can be downloaded using the instructions in [Downloading a single video](#downloading-a-single-video). Use `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` as the file name to get the same file name format as the command above.
 
 You can create scheduled tasks to periodically run your archival commands to stay up to date automatically. 
 
