@@ -20,7 +20,7 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
 1. Go to https://yt-dl.org/downloads/latest/youtube-dl.exe to download youtube-dl.
 2. From your `Downloads` folder, move `youtube-dl.exe` to a permanent location.
 3. Open cmd with Administrator permissions
-   * right-click ⊞ windows key and click `Command Prompt (Admin)`
+   * ⊞ windows key + cmd + right click on app and select `Run as administrator`
 4. Modify the following command by replacing `<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>` with the folder path where you are storing `youtube-dl.exe` and then run the command in the cmd window by pasting the command into the cmd window and pressing enter
 >Example:
 If you were to store `youtube-dl.exe` in `C:\Program Files\youtube-dl` you would run the command `setx /M PATH "%PATH%;C:\Program Files\youtube-dl"`
