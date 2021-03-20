@@ -36,7 +36,7 @@ setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
 1. Go to https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z to download FFmpeg.
 2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
 3. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `ffmpeg.exe` is.
+4. Repeat steps 4 and 5 from [Get youtube-dl](#get-youtube-dl) but this time using the folder for where `ffmpeg.exe` is.
 >Example:
 If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
 5. Run the command `ffmpeg -version`, you should get an output like `ffmpeg version 2.2.2` along with other text if you set everything up correctly.
@@ -46,7 +46,7 @@ If you were to store the folder at `C:\Program Files\ffmpeg` then you would run 
 1. Go to https://sourceforge.net/projects/atomicparsley/files/latest/download to download AtomicParsley.
 3. Extract the the downloaded zip file
 4. Inside the extracted files, copy the folder `AtomicParley-win32-x.x.x` to a permanent location. You may want to rename the folder to `AtomicParsley`.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `AtomicParsley.exe` is.
+4. Repeat steps 4 and 5 from [Get youtube-dl](#get-youtube-dl) but this time using the folder for where `AtomicParsley.exe` is.
 >Example: 
 If you were to store the folder at `C:\Program Files\AtomicParsley` then you would run `setx /M PATH "%PATH%;C:\Program Files\AtomicParsley`. `AtomicParsley.exe` should be located in `C:\Program Files\AtomicParsley`.
 6. You should now be able to run the command `AtomicParsley`.
@@ -162,6 +162,9 @@ New versions of youtube-dl will automatically pick the best quality available wi
 -f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4
 ```
 You can add this after the `-i` on any of the shown commands.
+
+### I downloaded a video but its shorter than the full length, what do I do?
+Refer to [this guide](FixingShortVideoError.md)
 
 ### What difference is there between the highest quality `.mp4` and `.mkv`?
 Using `.mkv` will download `48kHz Opus audio` if it is available while `.mp4` will download `44.1kHZ AAC audio`. Using `.mkv` will allow higher qualities and resolutions above `1080p` while `.mp4` will be limited to `1080p`*. There are only a handful of videos that are above `1080p` and most are short music videos as opposed to long live streams.
