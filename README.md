@@ -103,7 +103,7 @@ youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58D
 
 ### Downloading all playlists from a channel
 In this example you will create a folder for the channel and all the playlists will be downloaded to their own folders inside the channel folder. An archive file is going to be used to prevent redownloading if `youtube-dl` stops working (such as your computer going to sleep). Due to technical constrains, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video. If you do not want this behavior, then refer to instructions from [Downloading a playlist
-](##downloading-a-playlist). Generally, videos are not repeated in playlists on Hololivers' channels.
+](#downloading-a-playlist). Generally, videos are not repeated in playlists on Hololivers' channels.
 
 1. Create a folder where all the playlists will be downloaded.
 2. Open cmd.
