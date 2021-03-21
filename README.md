@@ -2,7 +2,17 @@
 This tutorial covers setting up and using `youtube-dl` to download videos, playlists and channels.
 
 ## Table of Contents
-redo
+- [Prerequisites](#prerequisites)
+  - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
+  - [Installing youtube-dl and FFmpeg using chocolatey](#installing-youtube-dl-and-ffmpeg-using-chocolatey)
+- [Using youtube-dl](#using-youtube-dl)
+  - [Downloading a single video](#downloading-a-single-video)
+  - [Downloading a playlist](#downloading-a-playlist)
+  - [Downloading all playlists from a channel](#downloading-all-playlists-from-a-channel)
+  - [Downloading a members only video](#downloading-a-members-only-video)
+  - [Archiving a channel](#archiving-a-channel)
+- [Downloading a livestream as it is occurring](#downloading-a-livestream-as-it-is-occurring)
+- [FAQ](#faq)
 
 ## Prerequisites
 ### Installing chocolatey on Windows
