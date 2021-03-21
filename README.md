@@ -10,6 +10,7 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
   - [Downloading videos](#downloading-videos)
   - [Downloading playlists](#downloading-playlists)
   - [Downloading members only videos](#downloading-members-only-videos)
+  - [Setting-up a default config](#setting-up-a-default-config)
 - [Downloading entire channels](#downloading-entire-channels)
 - [Downloading livestreams](#downloading-livestreams)
 - [FAQ](#faq)
@@ -117,7 +118,7 @@ If you find yourself using the same flags 99% of the time, you can choose to set
 5. Download videos with ease in the future.
 
 ## Downloading entire channels
-There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/dlentirechannel.ps1)
+There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/dlentirechannel.ps1).
 
 ## Downloading livestreams
 Livestreams can be downloaded as they are airing.
@@ -127,8 +128,13 @@ This is useful for no archive livestreams or scheduled livestreams.
 Refer to [this guide](archiving_livestreams.md).
 
 ## FAQ
+### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+- Try reopening a new Command Prompt in administrator mode and verify if they work.
+- Make sure you followed the instructions and installed everything correctly.
+- Try adding `.exe` behind the command (eg. `ytarchive.exe` instead of `ytarchive`).
+
 ### How do I get the highest quality video and audio available?
-New versions of youtube-dl will automatically pick the best quality available without any extra command options.
+New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
 ### How do I do stuff not mentioned here?
 Read the docs.

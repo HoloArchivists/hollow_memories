@@ -3,8 +3,8 @@ This guide covers on how to record ongoing or scheduled livestreams. This is use
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
+   - [Installing Python and FFMpeg on Windows](#installing-python-and-ffmpeg-on-windows)
    - [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
-   - [Installing FFMpeg on Windows](#installing-ffmpeg-on-windows)
 - [Using ytarchive](#using-ytarchive)
    - [Saving a normal stream](#saving-a-normal-stream)
    - [Saving a members only stream](#saving-a-members-only-stream)
@@ -17,8 +17,8 @@ Follow the guide shown in the [README](README.md#prerequisites)
 
 ### Installing ytarchive on Windows
 1. Download ytarchive from https://github.com/Kethsar/ytarchive/releases/latest
-   - If you get a virus warning on your anti-virus, it's a false-positive. [Read here](https://github.com/Kethsar/ytarchive/issues/9)
-   - You may use the [`.py` version instead](#faq)
+   - If you get a virus warning on your anti-virus, it's a false-positive. [Read here](https://github.com/Kethsar/ytarchive/issues/9).
+   - You may use the [`.py` version instead](#how-do-i-use-the-py-file-version-of-ytarchive-instead)
 2. Move `ytarchive.exe` to a permanent location (eg. C:\Program Files\ytarchive)
 3. Open Command Prompt in elevated mode
 > Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
@@ -63,8 +63,6 @@ ytarchive -c youtube.com_cookies.txt
 
 >You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
 
->To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts/ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
-
 ### Advanced usage
 If you wish to learn the CLI commands yourself, use the `ytarchive -h` command or refer to this [README](https://github.com/Kethsar/ytarchive/blob/master/README.md).
 * Download the stream to the current directory with the best quality
@@ -99,11 +97,12 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 * The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
 ## Troubleshooting/FAQ
-### When I run ffmpeg or python in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
 - Try reopening a new Command Prompt in administrator mode and verify if they work.
+- Make sure you followed the instructions and installed everything correctly.
 - Try adding `.exe` behind the command (eg. `ytarchive.exe` instead of `ytarchive`).
 ### When I run `ytarchive` in Command Prompt, I get an infinite loop!
-- Try ytarchive.eve instead of ytarchive.
+- Try ytarchive.exe instead of ytarchive.
 ### How do I use the `.py` file version of ytarchive instead?
 - The `.py` file must be in the directory you want to save the stream to
 - Follow the normal instructions but instead of using the `ytarchive` command use `python ytarchive.py` instead.
