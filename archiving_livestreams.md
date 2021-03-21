@@ -45,7 +45,7 @@ cd "C:\Path\To\stream"
 ```
 >Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
 3. Type `ytarchive --add-metadata` into Command Prompt and pressing enter.
->To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts\ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
+>To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts/ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
 4. Paste the URL of the stream you wish to save. (eg. `https://www.youtube.com/watch?v=tYnk9EnrnOE`)
 5. If you are saving a stream that has been scheduled but not yet started, it will ask you if you will wait until the start of the livestream. Type `poll` then `15` to check if the stream has started every 15 seconds.
 6. Enter the quality option you desire from the list shown.
@@ -68,7 +68,7 @@ ytarchive --add-metadata -c C:\Path\To\cookies.txt
 ```
 >Example: If you were to store `cookie` in `C:\Users\anon\Desktop\youtube-cookies.txt` you would run the command `ytarchive --add-metadata -c C:\Users\anon\Desktop\youtube-cookies.txt`
 
->To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts\ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
+>To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts/ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
 
 If you wish to learn the CLI commands yourself, use the `ytarchive -h` command or refer to this [README](https://github.com/Kethsar/ytarchive/blob/master/README.md).
 
