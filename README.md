@@ -77,6 +77,10 @@ youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58D
 
 * To download all playlists from a channel, simply copy the channel's URL and add `/playlists` at the end. Unfortunately if used with `--download-archive`, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video.:
 
+* The flags can be combined to form a single command. Example:
+```
+youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd -r 10M --embed-thumbnail -add-metadata --download-archive "C:\Users\anon\Downloads\%(playlist)s\archive.txt" -i --merge-output-format mp4 -o "C:\Users\anon\Downloads\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
+```
 
 ### Downloading a members only video
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
