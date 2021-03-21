@@ -24,7 +24,7 @@ setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 5. Verify that it has installed correctly by opening a new Command Prompt without elevated mode, typing `ytarchive -h` and pressing enter.
 
 ### Installing FFMpeg on Windows
-Follow the guide shown in the [README](README.md#installing-youtube-dl-and--ffmpeg-using-chocolatey)
+Follow the guide shown in the [README](README.md#installing-youtube-dl-and-ffmpeg-using-chocolatey)
 
 ## Using ytarchive
 ### Saving a normal stream
