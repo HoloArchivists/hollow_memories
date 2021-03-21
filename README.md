@@ -23,14 +23,14 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
 Set-ExecutionPolicy Bypass -Scope Process -Force; `
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
-3. Verify chocolatey has instealled by running the command `refreshenv` then `choco -?`.
+3. Verify chocolatey has instealled by running the command then `choco -?`.
 
 ### Installing youtube-dl and FFmpeg using chocolatey
 1. Using the same PowerShell window from before, run the following command by pasting it in(CTRL+V) and pressing enter.
 ```
 choco install -y youtube-dl ffmpeg
 ```
-2. Verify both programs have been installed by typing `refreshenv` then `youtube-dl --version` and `ffmpeg -version`
+2. Verify both programs have been installed by typing then `youtube-dl --version` and `ffmpeg -version`
 
 ## Using youtube-dl
 >The following examples download as `.mkv` files otherwise stated. See the [FAQ section](#faq) below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.
