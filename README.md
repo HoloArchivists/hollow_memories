@@ -42,6 +42,7 @@ python -m pip install --upgrade yt-dlp
 3. Verify that yt-dlp has been installed by typing `yt-dlp --version`
 
 ## Using yt-dlp
+If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or refer to this [README](https://github.com/yt-dlp/yt-dlp/blob/master/README.md).
 ### Downloading videos
 * You can use [this script to download single videos](scripts/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
 * You can use [this script to download playlists](scripts/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
