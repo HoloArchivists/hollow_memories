@@ -1,7 +1,7 @@
 <#
 Download an entire channel
 
-Read https://github.com/Lytexx/hollow_memories#using-youtube-dl
+Read https://github.com/Lytexx/hollow_memories#using-yt-dlp
 to learn how to use the script
 #>
 

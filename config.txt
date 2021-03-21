@@ -1,0 +1,26 @@
+###
+# yt-dlp configuration file
+# Read https://github.com/Lytexx/hollow_memories#setting-up-a-default-config
+# to learn how to edit this config file
+###
+
+# Ignore errors
+-i
+
+# Save video file as mp4
+--merge-output-format mp4
+
+# Add metadata to video file
+--add-metadata
+
+# Embed thumbnail into video file
+--embed-thumbnail
+ 
+# Embed subtitles into video file
+--embed-subs
+
+# Limit download rate to 10MB/s
+-r 10M
+
+# Set the file name to an easily searchable one
+-o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
