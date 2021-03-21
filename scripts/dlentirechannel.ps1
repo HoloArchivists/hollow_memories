@@ -1,16 +1,28 @@
 <#
-Download an entire channel + membership videos
+Download an entire channel
 
-Shortened channel ID is ID without the UC for example
-https://www.youtube.com/channel/UCyKsg-57XC9pyHbP7v3kCPQ
-becomes yKsg-57XC9pyHbP7v3kCPQ
-
-Put your youtube.com_cookies.txt in the same folder as the script to download all the membership videos
+Read https://github.com/Lytexx/hollow_memories#using-youtube-dl
+to learn how to use the script
 #>
-$URL = Read-Host -Prompt 'Paste the shortened channel ID'
-$threads = Read-Host -Prompt 'Number of threads to use'
 
-youtube-dl -o "%(uploader)s/[%(upload_date)s] %(title)s (%(id)s).%(ext)s" "https://www.youtube.com/channel/UC$URL" --download-archive "archive.log"  --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --ignore-errors --cookies "youtube.com_cookies.txt"
-youtube-dl -o "%(uploader)s/Membership/[%(upload_date)s] %(title)s (%(id)s).%(ext)s" "https://www.youtube.com/playlist?list=UUMO$URL" --download-archive "archive.log"  --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --ignore-errors --cookies "youtube.com_cookies.txt"
+$url = Read-Host -Prompt "Enter the shortened channel ID"
+$threads = Read-Host -Prompt "Enter the number of threads to use (Default: 1)(Max: 5)"
+$confirmation = Read-Host "Do you want to throttle the download speed? (y/n)"
+if ($confirmation -eq 'y') {
+$speed = Read-Host -Prompt 'Enter the download speed limit'
+$rate = "-r$speed"
+}
+else {
+$rate = ""
+}
+$confirmation = Read-Host "Are you saving a members-only videos and streams? (y/n)"
+if ($confirmation -eq 'y') {
+    Read-Host -Prompt "Save your cookies file as youtube.com_cookies.txt and in the same directory as this script before pressing [ENTER]"
+    yt-dlp "https://www.youtube.com/channel/UC$url" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate --cookies "youtube.com_cookies.txt" -N $threads --download-archive "%(uploader)s/archive.log" -o "%(uploader)s/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+    yt-dlp "https://www.youtube.com/playlist?list=UUMO$URL" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate --cookies "youtube.com_cookies.txt" -N $threads --download-archive "%(uploader)s/archive.log" -o "%(uploader)s/Membership/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+}
+else {
+    yt-dlp "https://www.youtube.com/channel/UC$url" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate -N $threads --download-archive "%(uploader)s/archive.log" -o "%(uploader)s/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+}
 
 pause

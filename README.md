@@ -4,7 +4,7 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
 ## Table of Contents
 - [Prerequisites](#prerequisites)
   - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
-  - [Installing youtube-dl and FFmpeg using chocolatey](#installing-youtube-dl-and-ffmpeg-using-chocolatey)
+  - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
 - [Using youtube-dl](#using-youtube-dl)
   - [Downloading videos](#downloading-videos)
   - [Downloading playlists](#downloading-playlists)
@@ -24,24 +24,35 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; `
 ```
 3. Verify chocolatey has instealled by running the command then `choco -?`.
 
-### Installing youtube-dl and FFmpeg using chocolatey
+### Installing Python and FFmpeg using chocolatey
 1. Using the same PowerShell window from before, run the following command by pasting it in(CTRL+V) and pressing enter.
 ```
-choco install -y youtube-dl ffmpeg
+choco install -y python ffmpeg
 ```
-2. Verify both programs have been installed by typing then `youtube-dl --version` and `ffmpeg -version`
+2. Verify both programs have been installed by typing `python --version` and `ffmpeg -version`
 
-## Using youtube-dl
+### Installing yt-dlp
+1. Open Command Prompt in elevated mode
+> Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
+2. Run the following command by pasting it in(CTRL+V) and pressing enter.
+```
+python -m pip install --upgrade yt-dlp
+```
+3. Verify that yt-dlp has been installed by typing `yt-dlp --version`
+
+## Using yt-dlp
 ### Downloading videos
 * To make your life easier, you can use [this script](scripts/dlsinglevid.ps1) instead of running the commands every time. Save the script to the directory where you want to save the video to and run it.
 * Download the video to the current directory which is the path shown in cmd on the left of where you are typing
 ```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s
+yt-dlp https://www.youtube.com/watch?v=pFgUluV_00s
 ```
 
 * The `-i` flag simply ignores errors and continues instead of throwing an error (eg. if the video is privated or deleted).
 
 * The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/ytdl-org/youtube-dl#output-template).
+> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
+
 > Using the filename `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
 * The `-add-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
@@ -54,16 +65,17 @@ youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s
 
 * The flags can be combined to form a single command. Example:
 ```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s -i --merge-output-format mp4 --add-metadata --embed-thumbnail -o "C:\Users\anon\Downloads\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail -o "C:\Users\anon\Downloads\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
 ### Downloading playlists
-> The flags shown in the previous commands can be used here too.
 * You can use [this script](scripts/dlsingleplaylist.ps1) which incorporates all the flags shown below except `-r`. To update a downloaded playlist, simply run the script again with the same playlist URL.
+
+* The flags shown in the [previous section](#downloading-videos) can be used here too.
 
 * Download a playlist to the current directory
 ```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 ```
 
 * The `-r` flag is used to throttle the download rate so it does not use up all your bandwidth. 100K = 100KB/s, 1M = 1MB/s (eg. -r 10M to limit download rate to 10MB/s)
@@ -75,11 +87,13 @@ youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58D
 
 * The `--download-archive` flag saves a list of downloaded videos so that if you decide to update the downloaded playlist in the future it will not redownload the videos listed.
 
+* The `-n` flag is used to state the amount of CPU threads to use when downloading. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
+
 * To download all playlists from a channel, simply copy the channel's URL and add `/playlists` at the end. Unfortunately if used with `--download-archive`, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video.:
 
 * The flags can be combined to form a single command. Example:
 ```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd -r 10M --embed-thumbnail -add-metadata --download-archive "C:\Users\anon\Downloads\%(playlist)s\archive.txt" -i --merge-output-format mp4 -o "C:\Users\anon\Downloads\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb --embed-thumbnail --add-metadata -n 16 --download-archive "C:\Users\anon\Downloads\%(playlist)s\archive.txt" -i --merge-output-format mp4 -o "C:\Users\anon\Downloads\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
 ```
 
 ### Downloading a members only video
@@ -89,9 +103,9 @@ Make sure you have membership of the channel and are logged into YouTube or it w
 > Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
 3. Add `--cookies C:\Path\To\youtube.com_cookies.txt` at the end of any command and replace `C:\Path\To\youtube.com_cookies.txt` with the path to your cookie file. Example:
 ```
-youtube-dl https://www.youtube.com/watch?v=TEoslCqshuQ -i --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
+yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
 ```
->You may find that sometimes authentication will fail. This is most likely due to old cookies. Simply repeat step 2 to replace your current cookie file.
+>You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
 * You can use [this script](scripts/dlsinglevid.ps1) instead of running the commands every time. Save the script to the directory where you want to save the video to and run it.
 
 ### Archiving a channel
