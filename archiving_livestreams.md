@@ -52,11 +52,13 @@ Make sure you have membership of the channel and are logged into YouTube or it w
 cd "C:\Path\To\stream"
 ```
 >Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
-5. Modify the following command by replacing `C:\Path\To\youtube-cookies.txt` with the folder path where you are storing the cookie file.
+5. Modify the following command by replacing `C:\Path\To\youtube.com_cookies.txt` with the folder path where you are storing the cookie file.
 ```
-ytarchive --add-metadata -c C:\Path\To\cookies.txt
+ytarchive --add-metadata -c youtube.com_cookies.txt
 ```
->Example: If you were to store `cookie` in `C:\Users\anon\Desktop\youtube-cookies.txt` you would run the command `ytarchive --add-metadata -c C:\Users\anon\Desktop\youtube-cookies.txt`
+>Example: If you were to store `cookie` in `C:\Users\anon\Desktop\youtube.com_cookies.txt` you would run the command `ytarchive --add-metadata -c youtube.com_cookies.txt`
+
+>You may find that sometimes authentication will fail. This is most likely due to old cookies. Simply repeat step 2 to replace your current cookie file.
 
 >To prevent having to type these 2 commands in every time you want to save a stream, download this [file](scripts/ytarchive.ps1) and copy it to the directory you wish to save your stream to, then open the file.
 
