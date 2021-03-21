@@ -13,7 +13,7 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
   - [Setting-up a default config](#setting-up-a-default-config)
 - [Downloading entire channels](#downloading-entire-channels)
 - [Downloading livestreams](#downloading-livestreams)
-- [FAQ](#faq)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
 ### Installing chocolatey on Windows
@@ -127,7 +127,7 @@ This is useful for no archive livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
 
-## FAQ
+## Troubleshooting/FAQ
 ### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
 - Try reopening a new Command Prompt in administrator mode and verify if they work.
 - Make sure you followed the instructions and installed everything correctly.
