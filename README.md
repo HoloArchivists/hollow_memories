@@ -5,12 +5,13 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
 - [Prerequisites](#prerequisites)
   - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
   - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
-- [Using youtube-dl](#using-youtube-dl)
+  - [Installing yt-dlp](#installing-yt-dlp)
+- [Using yt-dlp](#using-yt-dlp)
   - [Downloading videos](#downloading-videos)
   - [Downloading playlists](#downloading-playlists)
-  - [Downloading a members only video](#downloading-a-members-only-video)
-  - [Archiving a channel](#archiving-a-channel)
-- [Downloading a livestream as it is occurring](#downloading-a-livestream-as-it-is-occurring)
+  - [Downloading members only videos](#downloading-members-only-videos)
+- [Downloading entire channels](#downloading-entire-channels)
+- [Downloading livestreams](#downloading-livestreams)
 - [FAQ](#faq)
 
 ## Prerequisites
@@ -42,10 +43,12 @@ python -m pip install --upgrade yt-dlp
 
 ## Using yt-dlp
 ### Downloading videos
-* To make your life easier, you can use [this script](scripts/dlsinglevid.ps1) instead of running the commands every time. Save the script to the directory where you want to save the video to and run it.
-* Download the video to the current directory which is the path shown in cmd on the left of where you are typing
+* You can use [this script to download single videos](scripts/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
+* You can use [this script to download playlists](scripts/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
+
+* This is the basic command to download a video to the current directory
 ```
-yt-dlp https://www.youtube.com/watch?v=pFgUluV_00s
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 ```
 
 * The `-i` flag simply ignores errors and continues instead of throwing an error (eg. if the video is privated or deleted).
@@ -63,23 +66,21 @@ yt-dlp https://www.youtube.com/watch?v=pFgUluV_00s
 
 * `--merge-output-format mp4` is used to output an `.mp4` file instead of an `.mkv` file.
 
+* The `-r` flag is used to throttle the download rate so it does not use up all your bandwidth. 100K = 100KB/s, 1M = 1MB/s (eg. -r 10M to limit download rate to 10MB/s)
+>Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
+
+* The `-n` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
+
 * The flags can be combined to form a single command. Example:
 ```
-yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail -o "C:\Users\anon\Downloads\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
 ### Downloading playlists
-* You can use [this script](scripts/dlsingleplaylist.ps1) which incorporates all the flags shown below except `-r`. To update a downloaded playlist, simply run the script again with the same playlist URL.
-
-* The flags shown in the [previous section](#downloading-videos) can be used here too.
-
 * Download a playlist to the current directory
 ```
 yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 ```
-
-* The `-r` flag is used to throttle the download rate so it does not use up all your bandwidth. 100K = 100KB/s, 1M = 1MB/s (eg. -r 10M to limit download rate to 10MB/s)
->Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
 
 * You can use the `%(playlist_index)s` placeholder in `-o` to have the video names ordered according to the playlist order.
 
@@ -87,16 +88,14 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 
 * The `--download-archive` flag saves a list of downloaded videos so that if you decide to update the downloaded playlist in the future it will not redownload the videos listed.
 
-* The `-n` flag is used to state the amount of CPU threads to use when downloading. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
-
 * To download all playlists from a channel, simply copy the channel's URL and add `/playlists` at the end. Unfortunately if used with `--download-archive`, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video.:
 
 * The flags can be combined to form a single command. Example:
 ```
-yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb --embed-thumbnail --add-metadata -n 16 --download-archive "C:\Users\anon\Downloads\%(playlist)s\archive.txt" -i --merge-output-format mp4 -o "C:\Users\anon\Downloads\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -r 10M --download-archive ".\%(playlist)s\playlist.txt" -o ".\%(playlist)s\%(playlist_index)s - [%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
-### Downloading a members only video
+### Downloading members only videos
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
 1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
 2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
@@ -106,13 +105,14 @@ Make sure you have membership of the channel and are logged into YouTube or it w
 yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
 ```
 >You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
-* You can use [this script](scripts/dlsinglevid.ps1) instead of running the commands every time. Save the script to the directory where you want to save the video to and run it.
 
-### Archiving a channel
-There is a script to simplify the process of archiving an entire channel which you can find [here](scripts/dlentirechannel.ps1)
+## Downloading entire channels
+There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/dlentirechannel.ps1)
 
-## Downloading a livestream as it is occurring
-Livestreams can be captured and downloaded as they are airing.
+## Downloading livestreams
+Livestreams can be downloaded as they are airing.
+
+This is useful for no archive livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
 
@@ -122,5 +122,5 @@ New versions of youtube-dl will automatically pick the best quality available wi
 
 ### How do I do stuff not mentioned here?
 Read the docs.
-* https://github.com/ytdl-org/youtube-dl/blob/master/README.md
+* https://github.com/yt-dlp/yt-dlp/blob/master/README.md
 * https://ffmpeg.org/documentation.html
