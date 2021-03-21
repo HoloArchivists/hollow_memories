@@ -2,54 +2,25 @@
 This tutorial covers setting up and using `youtube-dl` to download videos, playlists and channels.
 
 ## Table of Contents
-- [Prerequisites](#prerequisites)
-  - [Getting youtube-dl](#getting-youtube-dl)
-  - [Getting FFmpeg](#getting-ffmpeg)
-  - [Getting AtomicParsley](#getting-atomicparsley)
-- [Using youtube-dl](#using-youtube-dl)
-  - [Downloading a single video](#downloading-a-single-video)
-  - [Downloading a playlist](#downloading-a-playlist)
-  - [Downloading all playlists from a channel](#downloading-all-playlists-from-a-channel)
-  - [Downloading a members only video](#downloading-a-members-only-video)
-  - [Archiving a channel](#archiving-a-channel)
-- [Downloading a livestream as it is occurring](#downloading-a-livestream-as-it-is-occurring)
-- [FAQ](#faq)
+redo
 
 ## Prerequisites
-### Getting youtube-dl
-1. Go to https://yt-dl.org/downloads/latest/youtube-dl.exe to download youtube-dl.
-2. From your `Downloads` folder, move `youtube-dl.exe` to a permanent location.
-3. Open cmd with Administrator permissions
-   * right-click ⊞ windows key and click `Command Prompt (Admin)`
-4. Modify the following command by replacing `<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>` with the folder path where you are storing `youtube-dl.exe` and then run the command in the cmd window by pasting the command into the cmd window and pressing enter
->Example:
-If you were to store `youtube-dl.exe` in `C:\Program Files\youtube-dl` you would run the command `setx /M PATH "%PATH%;C:\Program Files\youtube-dl"`
-   
+### Installing chocolatey on Windows
+1. Open PowerShell in elevated mode
+> Open the start menu by pressing the ⊞ windows key, type cmd, right click `Windows PowerShell` and clicking `Run as administrator`.
+2. Run the following command in PowerShell by pasting it in(CTRL+V) and pressing enter.
 ```
-setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
-5. Close the cmd window
-6. Open a new cmd window (not administrator mode)
-7. Run the command `youtube-dl --version`, you should get an output like `2021.03.14` if you set everything up correctly. 
+3. Verify chocolatey has instealled by running the command `refreshenv` then `choco -?`.
 
-### Getting FFmpeg
-1. Go to https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z to download FFmpeg.
-2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
-3. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `ffmpeg.exe` is.
->Example:
-If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
-5. Run the command `ffmpeg -version`, you should get an output like `ffmpeg version 2.2.2` along with other text if you set everything up correctly.
-
-### Getting AtomicParsley
-> This is optional, it will allow you to create `.mp4` files with thumbnails from the youtube video. Currently this guide does not make use of AtomicParsley.
-1. Go to https://sourceforge.net/projects/atomicparsley/files/latest/download to download AtomicParsley.
-3. Extract the the downloaded zip file
-4. Inside the extracted files, copy the folder `AtomicParley-win32-x.x.x` to a permanent location. You may want to rename the folder to `AtomicParsley`.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `AtomicParsley.exe` is.
->Example: 
-If you were to store the folder at `C:\Program Files\AtomicParsley` then you would run `setx /M PATH "%PATH%;C:\Program Files\AtomicParsley`. `AtomicParsley.exe` should be located in `C:\Program Files\AtomicParsley`.
-6. You should now be able to run the command `AtomicParsley`.
+### Installing youtube-dl and FFmpeg using chocolatey
+1. Using the same PowerShell window from before, run the following command by pasting it in(CTRL+V) and pressing enter.
+```
+choco install -y youtube-dl ffmpeg
+```
+2. Verify both programs have been installed by typing `refreshenv` then `youtube-dl --version` and `ffmpeg -version`
 
 ## Using youtube-dl
 >The following examples download as `.mkv` files otherwise stated. See the [FAQ section](#faq) below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.

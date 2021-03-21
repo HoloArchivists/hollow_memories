@@ -24,17 +24,7 @@ setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 5. Verify that it has installed correctly by opening a new Command Prompt without elevated mode, typing `ytarchive -h` and pressing enter.
 
 ### Installing FFMpeg on Windows
-1. Download FFMpeg from https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z .
-2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
-3. Rename the extracted folder to `ffmpeg` for simplicity then copy the `ffmpeg` folder to a permanent location. (eg. C:\Program Files\ffmpeg)
-4. Open Command Prompt in elevated mode
-> Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
-5. Modify the following command by replacing `C:\Path\To\ffmpeg` with the folder path where you are storing `ffmpeg` and run the command in Command Prompt by pasting the command in(CTRL+V) and pressing enter. Do not remove `\bin` from the end of the command.
-```
-setx /M PATH "%PATH%;C:\Path\To\ffmpeg\bin"
-```
->Example: If you were to store `ffmpeg` in `C:\Program Files\ffmpeg` you would run the command `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin"`
-6. Verify that it has installed correctly by opening a new Command Prompt without elevated mode, typing `ffmpeg -h` and pressing enter.
+Follow the guide shown in the [README](README.md#installing-youtube-dl-and--ffmpeg-using-chocolatey)
 
 ## Using ytarchive
 ### Saving a normal stream
