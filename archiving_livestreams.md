@@ -1,8 +1,14 @@
 # Archiving Livestreams
-This guide covers on how to record ongoing livestreams. This is useful for streams that will not be archived later on.
+This guide covers on how to record ongoing or scheduled livestreams. This is useful for streams that will not be archived later on.
 
 ## Table of Contents
-- nope
+- [Prerequisites](#prerequisites)
+   - [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
+   - [Installing FFMpeg on Windows](#installing-ffmpeg-on-windows)
+- [Using ytarchive](#using-ytarchive)
+   - [Saving a normal stream](#saving-a-normal-stream)
+   - [Saving a members only stream](#saving-a-members-only-stream)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
 ### Installing ytarchive on Windows
@@ -66,3 +72,10 @@ ytarchive --add-metadata -c C:\Path\To\cookies.txt
 
 If you wish to learn the CLI commands yourself, use the `ytarchive -h` command or refer to this [README](https://github.com/Kethsar/ytarchive/blob/master/README.md).
 
+## Troubleshooting/FAQ
+### When I run ffmpeg or ytarchive in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+- Make sure that you have added both of them into your system path using the `setx /M PATH` in the steps shown above without misspelling or getting the directory wrong.
+- Try adding `.exe` behind the command (eg. `ytarchive.eve` instead of `ytarchive`).
+- If it still does not work, try following [this tutorial](https://www.youtube.com/watch?v=gb9e3m98avk).
+### When I run `ytarchive` in Command Prompt, I get an infinite loop!
+- Try ytarchive.eve instead of ytarchive.
