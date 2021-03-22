@@ -73,9 +73,12 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 * The `-n` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
 
+* The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
+> It is recommended to use `-S "proto,codec:av01:m4a"` as it fixes issues with broken video downloading and playback, [see here](#the-video-file-is-corrupted)
+
 * The flags can be combined to form a single command. Example:
 ```
-yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -S "proto,codec:av01:m4a" -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
 ### Downloading playlists
@@ -135,6 +138,11 @@ Refer to [this guide](archiving_livestreams.md).
 
 ### How do I get the highest quality video and audio available?
 New versions of yt-dlp will automatically pick the best quality available without any extra command options.
+
+### The video file is corrupted!
+* There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
+* FFmpeg versions before 3.1.4 do not have this issue.
+* Add `-S "proto,codec:av01:m4a"` to your command and it should fix most issues with broken video playback.
 
 ### How do I do stuff not mentioned here?
 Read the docs.

@@ -19,6 +19,9 @@
 # Embed subtitles into video file
 --embed-subs
 
+# Fixes issues with FFmpeg muxing and WMP playback
+-S "proto,codec:av01:m4a"
+
 # Limit download rate to 10MB/s
 -r 10M
 
