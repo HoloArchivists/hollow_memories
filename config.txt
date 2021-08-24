@@ -10,10 +10,10 @@
 # Add metadata to video file
 --embed-metadata
 
-# Embed thumbnail into video file
+# Embed thumbnail into the video file
 --embed-thumbnail
  
-# Embed subtitles into video file
+# Embed subtitles into the video file
 --embed-subs
 
 # Fixes issues with FFmpeg muxing

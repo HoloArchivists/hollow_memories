@@ -3,7 +3,7 @@ This guide covers on how to record ongoing or scheduled livestreams. This is use
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
-   - [Installing Python and FFMpeg on Windows](#installing-python-and-ffmpeg-on-windows)
+   - [Installing Python and FFmpeg on Windows](#installing-python-and-ffmpeg-on-windows)
    - [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
 - [Using ytarchive](#using-ytarchive)
    - [Saving a normal stream](#saving-a-normal-stream)
