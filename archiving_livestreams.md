@@ -95,6 +95,10 @@ The total number of threads running will be `X` * 2 + 3. Main thread, a thread f
 
 * The `-t` flag is used to embed the original stream thumbnail in the downloaded video file.
 
+> this will also show the thumbnail as file preview if your file explorer supports it
+
+![Preview](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/post_process_difference.png)
+
 * The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
 ## Troubleshooting/FAQ
