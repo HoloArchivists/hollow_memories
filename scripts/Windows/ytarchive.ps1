@@ -17,6 +17,6 @@ else {
     $cookies = ""
 }
 
-ytarchive.exe "$url" $quality --add-metadata --threads $threads -t -r 15 $cookies -o ".\[%(channel)s][%(upload_date)s] %(title)s (%(id)s)"
+ytarchive.exe "$url" $quality --embed-metadata --threads $threads -t -r 15 $cookies -o ".\[%(channel)s][%(upload_date)s] %(title)s (%(id)s)"
 
 pause

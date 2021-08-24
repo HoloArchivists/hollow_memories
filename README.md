@@ -72,7 +72,7 @@ If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or r
 yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 ```
 
-- The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/ytdl-org/youtube-dl#output-template).
+- The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/yt-dlp/yt-dlp#output-template).
 
 > You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
 
@@ -121,7 +121,7 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 - The flags can be combined to form a single command. Example:
 
 ```
-yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb -i --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -r 10M --download-archive ".\%(playlist)s\playlist.txt" -o ".\%(playlist)s\%(playlist_index)s - [%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -r 10M --download-archive ".\%(playlist)s\playlist.txt" -o ".\%(playlist)s\%(playlist_index)s - [%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
 ### Downloading members only videos

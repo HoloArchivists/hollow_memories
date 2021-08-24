@@ -24,6 +24,6 @@ else {
     $cookies = ""
 }
 
-youtube-dl "$url" -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs $rate $cookies -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp "$url" -i --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs $rate $cookies -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 
 pause
