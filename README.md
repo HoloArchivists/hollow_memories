@@ -82,7 +82,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 - The `--embed-thumbnail` flag is used to embed the original thumbnail of the video into the downloaded video file. `--embed-subs` is used to embed subtitles from YouTube into the video file, this is useful for music videos.
 
-> --embed-thumbnail will show the thumbnail as file preview if your file explorer supports it (mp4 has thumbnail embeded)
+> `--embed-thumbnail` will show the thumbnail as file preview if your file explorer supports it
 
 ![Preview](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/post_process_difference.png)
 
