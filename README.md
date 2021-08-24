@@ -172,35 +172,15 @@ Refer to [this guide](archiving_livestreams.md).
 
 ## Content Sharing
 
-### Using Torrents
+The Most Convinient way to share content is by using cloud storage i will list a few providers here
 
-In case you are new to torrents this article explains how bittorrent works
-<https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work>
-
-Explaining how to use a bittorrent client would go beyond the scope of this tutorial
-
-I personally use Qbittorrent <https://www.qbittorrent.org/> a very advanced bittorrent client that i would definitively recommend if you plan on torrenting a lot
-
-if you just want something simple you can use picotorrent <https://picotorrent.org/>
-
-both are free,open-source and very easy to use
-
-#### Uploading Torrents to Nyaa.si
-
-If you want to share streams as torrents i recommend using nyaa.si to upload them
-nyaa.si is "A BitTorrent community focused on Eastern Asian media including anime, manga, music, and more."
-
-before using it read the rules <https://nyaa.si/rules> and the help page <https://nyaa.si/help>
-I recommend making an account so you can edit/manage your torrents later
-to upload torrents to nyaa.si click the upload button at the top left which wil send you to <https://nyaa.si/upload>
-
-the rest should be pretty self explaining, the search on nyaa is very specific so use a proper title
-as example you could use `hololive` at the beginning and `(VideoID)` at the end like i do
-
-as Category you can use whatever you want since there is none that fits vtuber content, i usually use `Live Action - Raw`
-
-for the Torrent flags `Anonymous` will show `Anonymous` instead of your username as uploader
-`Hidden` is like the unlisted option on youtube only you will be able to see it
+Storage Provider | Free Storage | Recommended Paid Plan | Notes
+------------ | ------------- | ------------- | -------------
+Gofile.io | Unlimited (Temporary) | None | Files on gofile get deleted after 10 days of inactivity, Great if you don't have much space since you can watch videofiles directly on the website
+Mega.nz | 20GB | Pro I (10$/M) | Fast,Easy has a build in Videoplayer and a [CLI Tool](https://megatools.megous.com) but not recommended for big files as there is a download limit (~5GB) for normal user
+Google Drive | 15GB | 2TB (10$/M) | Can't say much to this, great storage provider besides the Unknown Traffic limit and compression on the filepreview
+1fichier | 1TB (Temporary) | Premium (3$/M) | Looks very promising but didn't have the time to test it out yet
+Youtube | Unlimited | - | Not cloud storage but a good alternative if you don't care about the quality loss
 
 ## HoloTools/HoloStats
 
