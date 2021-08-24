@@ -74,7 +74,7 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 
    `audio_only, 144p, 240p, 360p, 480p, 720p, 720p60, 1080p, 1080p60, best`
 
-* The `-add-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
+* The `-add-metadata` flag is used to add metadata to the video file which is a nice way to save the description without the need of an additional file
 
 * The `-o` flag is used to download the video to a different directory or to name the download file. The available placeholders are
 ```
@@ -84,13 +84,14 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 	channel (string): Full name of the channel the livestream is on
 	upload_date (string): Technically stream date (YYYYMMDD)
 ```
-> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
+> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon).
 
 > Using the filename `[%(channel)s][%(upload_date)s] %(title)s (%(id)s)` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
-* The `-r <integer>` flag is used to retry re-check if the stream is up every <integer> seconds. This is useful for waiting for scheduled livestreams.
+* The `-r X` flag is used to re-check if the stream is up every `X` seconds. This is useful for waiting for scheduled livestreams.
 
-* The `--threads <integer>` flag is used to set the number of threads to use for downloading audio and video fragments. The total number of threads running will be `<integer>` * 2 + 3. Main thread, a thread for each audio and video download, and `<integer>` number of fragment downloaders for both audio and video. Due to Python limitations the ytarchive will never use more than a single CPU core. Setting this above 5 is not recommended.
+* The `--threads X` flag is used to set the number of threads to use for downloading audio and video fragments. A sane number for this would be something between 2 and 8.
+The total number of threads running will be `X` * 2 + 3. Main thread, a thread for each audio and video download, and `X` number of fragment downloaders for both audio and video. Due to Python limitations the ytarchive will never use more than a single CPU core. Setting this above 8 is not recommended. Default is 1.
 
 * The `-t` flag is used to embed the original stream thumbnail in the downloaded video file.
 

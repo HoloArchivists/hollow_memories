@@ -7,13 +7,9 @@
 # Save video file as mp4
 --merge-output-format mp4
 
-# Add metadata to video file
+# Embed Metadata,Thumbnail and Subtitles into the output file
 --embed-metadata
-
-# Embed thumbnail into the video file
 --embed-thumbnail
- 
-# Embed subtitles into the video file
 --embed-subs
 
 # Fixes issues with FFmpeg muxing

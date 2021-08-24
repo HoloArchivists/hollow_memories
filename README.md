@@ -82,7 +82,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 - The `--embed-thumbnail` flag is used to embed the original thumbnail of the video into the downloaded video file. `--embed-subs` is used to embed subtitles from YouTube into the video file, this is useful for music videos.
 
-- The `--embed-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
+- The `--embed-metadata` flag is used to add metadata to the video file which is a nice way to save the description without the need of an additional file
 
 - `--merge-output-format mp4` is used to output an `.mp4` file instead of an `.mkv` file.
 
@@ -90,7 +90,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 >Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
 
-- The `-n` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
+- The `-N` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
 
 - The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
 
@@ -99,7 +99,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 - The flags can be combined to form a single command. Example:
 
 ```
-yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -S "proto,codec:av01:m4a" -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -S "quality,res,fps,proto,codec:vp9.2" -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
 ### Downloading playlists
