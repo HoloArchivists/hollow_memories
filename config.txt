@@ -12,7 +12,7 @@
 --embed-thumbnail
 --embed-subs
 
-# Fixes issues with FFmpeg muxing
+# ignore dash formats to prevent issues with FFmpeg muxing
 --extractor-args "youtube:skip=dash"
 
 # Limit download rate to 10MB/s
