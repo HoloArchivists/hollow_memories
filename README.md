@@ -87,6 +87,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 ![Preview](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/post_process_difference.png)
 
 - The `--embed-metadata` flag is used to add metadata to the video file which is a nice way to save the description without the need of an additional file
+
 > The description will be saved as `Comment` to view or copy it open the files propeties and then go to the datails tab
 
 
