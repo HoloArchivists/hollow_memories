@@ -180,7 +180,6 @@ Storage Provider | Free Storage | Recommended Paid Plan | Notes
 Gofile.io | Unlimited (Temporary) | None | Files on gofile get deleted after 10 days of inactivity, Great if you don't have much space since you can watch videofiles directly on the website
 Mega.nz | 20GB | Pro I (10$/M) | Fast,Easy has a build in Videoplayer and a [CLI Tool](https://megatools.megous.com) but not recommended for big files as there is a download limit (~5GB) for normal user
 Google Drive | 15GB | 2TB (10$/M) | Can't say much to this, great storage provider besides the Unknown Traffic limit and compression on the filepreview
-1fichier | 1TB (Temporary) | Premium (3$/M) | Looks very promising but didn't have the time to test it out yet
 Youtube | Unlimited | - | Not cloud storage but a good alternative if you don't care about the quality loss
 
 ## HoloTools/HoloStats
