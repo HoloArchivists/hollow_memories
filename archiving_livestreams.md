@@ -74,7 +74,7 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 
    `audio_only, 144p, 240p, 360p, 480p, 720p, 720p60, 1080p, 1080p60, best`
 
-* The `-add-metadata` flag is used to add metadata to the video file which is a nice way to save the description without the need of an additional file
+* The `--add-metadata` flag is used to add metadata to the video file which is a nice way to save the description without the need of an additional file
 > The description will be saved as `Comment` to view or copy it open the files propeties and then go to the datails tab
 
 * The `-o` flag is used to download the video to a different directory or to name the download file. The available placeholders are
