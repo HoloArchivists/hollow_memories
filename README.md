@@ -4,21 +4,26 @@ This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
-  - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
-  - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
-  - [Installing yt-dlp](#installing-yt-dlp)
-- [Using yt-dlp](#using-yt-dlp)
-  - [Downloading videos](#downloading-videos)
-  - [Downloading playlists](#downloading-playlists)
-  - [Downloading members only videos](#downloading-members-only-videos)
-  - [Setting-up a default config](#setting-up-a-default-config)
-- [Downloading entire channels](#downloading-entire-channels)
-- [Downloading livestreams](#downloading-livestreams)
-- [Content sharing](#content-sharing)
-  - [Using torrents](#using-torrents)
-- [HoloTools/HoloStats](#holotoolsholostats)
-- [Troubleshooting/FAQ](#troubleshootingfaq)
+- [Youtube Archive Tutorial](#youtube-archive-tutorial)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+    - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
+    - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
+    - [Installing yt-dlp](#installing-yt-dlp)
+  - [Using yt-dlp](#using-yt-dlp)
+    - [Downloading videos](#downloading-videos)
+    - [Downloading playlists](#downloading-playlists)
+    - [Downloading members only videos](#downloading-members-only-videos)
+    - [Setting-up a default config](#setting-up-a-default-config)
+  - [Downloading entire channels](#downloading-entire-channels)
+  - [Downloading livestreams](#downloading-livestreams)
+  - [Content Sharing](#content-sharing)
+  - [HoloTools/HoloStats](#holotoolsholostats)
+  - [Troubleshooting/FAQ](#troubleshootingfaq)
+    - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
+    - [How do I get the highest quality video and audio available?](#how-do-i-get-the-highest-quality-video-and-audio-available)
+    - [I get a "Conversion failed!" error from FFmpeg](#i-get-a-conversion-failed-error-from-ffmpeg)
+    - [How do I do stuff not mentioned here?](#how-do-i-do-stuff-not-mentioned-here)
 
 ## Prerequisites
 
@@ -135,7 +140,7 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb 
 
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
 
-1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract your cookies from YouTube which will be used to authenticate `ytarchive`.
+1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract your cookies from YouTube which will be used to authenticate `yt-dlp`.
 2. Open Youtube then click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
 
 > Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube Account.
