@@ -157,7 +157,7 @@ yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Deskt
 
 If you find yourself using the same flags 99% of the time, you can choose to set-up a default config so that you do not need to type the flags you always use.
 
-1. Go to your appdata
+1. Go to your appdata folder
     - Open the start menu by pressing the ⊞ windows key, type `%APPDATA%` and clicking on the folder.
 2. Make a new folder with the name `yt-dlp`
 3. Create a text file in the folder created with the name `config.txt`
