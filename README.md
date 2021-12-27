@@ -1,29 +1,27 @@
-# Youtube Archive Tutorial
+# Youtube Archiving Tutorial <!-- omit in toc -->
 
 This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams, videos, playlists and channels.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [Youtube Archive Tutorial](#youtube-archive-tutorial)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-    - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
-    - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
-    - [Installing yt-dlp](#installing-yt-dlp)
-  - [Using yt-dlp](#using-yt-dlp)
-    - [Downloading videos](#downloading-videos)
-    - [Downloading playlists](#downloading-playlists)
-    - [Downloading members only videos](#downloading-members-only-videos)
-    - [Setting-up a default config](#setting-up-a-default-config)
-  - [Downloading entire channels](#downloading-entire-channels)
-  - [Downloading livestreams](#downloading-livestreams)
-  - [Content Sharing](#content-sharing)
-  - [HoloTools/HoloStats](#holotoolsholostats)
-  - [Troubleshooting/FAQ](#troubleshootingfaq)
-    - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
-    - [How do I get the highest quality video and audio available?](#how-do-i-get-the-highest-quality-video-and-audio-available)
-    - [I get a "Conversion failed!" error from FFmpeg](#i-get-a-conversion-failed-error-from-ffmpeg)
-    - [How do I do stuff not mentioned here?](#how-do-i-do-stuff-not-mentioned-here)
+- [Prerequisites](#prerequisites)
+  - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
+  - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
+  - [Installing yt-dlp](#installing-yt-dlp)
+- [Using yt-dlp](#using-yt-dlp)
+  - [Downloading videos](#downloading-videos)
+  - [Downloading playlists](#downloading-playlists)
+  - [Downloading members only videos](#downloading-members-only-videos)
+  - [Setting-up a default config](#setting-up-a-default-config)
+- [Downloading entire channels](#downloading-entire-channels)
+- [Downloading livestreams](#downloading-livestreams)
+- [Content Sharing](#content-sharing)
+- [HoloTools/HoloStats](#holotoolsholostats)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
+  - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
+  - [How do I get the highest quality video and audio available?](#how-do-i-get-the-highest-quality-video-and-audio-available)
+  - [I get a Conversion failed! error from FFmpeg](#i-get-a-conversion-failed-error-from-ffmpeg)
+  - [How do I do stuff not mentioned here?](#how-do-i-do-stuff-not-mentioned-here)
 
 ## Prerequisites
 
@@ -68,9 +66,6 @@ If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or r
 
 ### Downloading videos
 
-- You can use [this script to download single videos](scripts/Windows/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
-- You can use [this script to download playlists](scripts/Windows/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
-
 - This is the basic command to download a video to the current directory
 
 ```powershell
@@ -81,13 +76,13 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 > You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
 
-> Using the filename `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
+> Using the filename `[%(upload_date)s] %(title)s [%(uploader)s] (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
 - The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
 - The `--embed-thumbnail` flag is used to embed the original thumbnail of the video into the downloaded video file. `--embed-subs` is used to embed subtitles from YouTube into the video file, this is useful for music videos.
 
-> `--embed-thumbnail` will show the thumbnail as file preview if your file explorer supports it
+> `--embed-thumbnail` will show the thumbnail as file preview depending on the container and if your file explorer supports it, as example on windows mp4 files will show it but .mkv will not.
 
 ![Preview](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/post_process_difference.png)
 
@@ -95,30 +90,29 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 > The description will be saved as `Comment` to view or copy it open the files propeties and then go to the datails tab
 
-
 - `--merge-output-format mp4` is used to output an `.mp4` file instead of an `.mkv` file.
 
 - The `-r` flag is used to throttle the download rate so it does not use up all your bandwidth. 100K = 100KB/s, 1M = 1MB/s (eg. -r 10M to limit download rate to 10MB/s)
 
 >Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
 
-- The `-N` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
+- The `-N` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but anything beyond 32 
 
 - The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
 
-> It is recommended to use `-S quality,res,fps,proto,codec:vp9.2` as it fixes issues with broken video downloading and playback, [see here](#i-get-a-conversion-failed-error-from-ffmpeg)
+> It is recommended to use `--extractor-args "youtube:skip=dash"` as it fixes issues with ffmpeg muxing, [see here](#i-get-a-conversion-failed-error-from-ffmpeg)
 
 - The flags can be combined to form a single command. Example:
 
-```
-yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -S "quality,res,fps,proto,codec:vp9.2" -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+```powershell
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs --extractor-args "youtube:skip=dash" -r 10M -o "[%(upload_date)s] %(title)s [%(uploader)s] (%(id)s).%(ext)s"
 ```
 
 ### Downloading playlists
 
 - Download a playlist to the current directory
 
-```
+```powershell
 yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 ```
 
@@ -132,7 +126,7 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 
 - The flags can be combined to form a single command. Example:
 
-```
+```powershell
 yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb --merge-output-format mp4 --embed-metadata --embed-thumbnail --embed-subs -r 10M --download-archive ".\%(playlist)s\playlist.txt" -o ".\%(playlist)s\%(playlist_index)s - [%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
@@ -147,7 +141,7 @@ Make sure you have membership of the channel and are logged into YouTube or it w
 
 3. Add `--cookies C:\Path\To\youtube.com_cookies.txt` at the end of any command and replace `C:\Path\To\youtube.com_cookies.txt` with the path to your cookie file. Example:
 
-```
+```powershell
 yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
 ```
 
@@ -166,13 +160,15 @@ If you find yourself using the same flags 99% of the time, you can choose to set
 
 ## Downloading entire channels
 
-There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/Windows/dlentirechannel.ps1).
+[WIP]
 
 ## Downloading livestreams
 
 Livestreams can be downloaded as they are airing.
 
-This is useful for no archive livestreams or scheduled livestreams.
+They can also be downloaded from the beginning even if you start downloading mid-stream.
+
+This is useful for unarchived livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
 
@@ -215,7 +211,7 @@ it also shows how long a stream was
 
 New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
-### I get a "Conversion failed!" error from FFmpeg
+### I get a Conversion failed! error from FFmpeg
 
 - There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
 - FFmpeg versions before 3.1.4 do not have this issue.
