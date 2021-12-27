@@ -6,6 +6,7 @@
 
 # Save video file as mp4
 --merge-output-format mp4
+--remux-video mp4
 
 # Embed Metadata,Thumbnail and Subtitles into the output file
 --embed-metadata
@@ -18,7 +19,7 @@
 # Limit download rate to 10MB/s
 -r 10M
 
-# Set the file name to an easily searchable one
+# Use a more detailed filename
 -o "[%(upload_date)s] %(title)s [%(uploader)s] (%(id)s).%(ext)s"
 
 # Use 16 threads when downloading with the native downloader
