@@ -145,6 +145,7 @@ and `--live-from-start` to download a youtube livestream from the start
 
 so downloading a livestream like with ytarchive would look like this
 ```cmd
+yt-dlp --live-from-start --wait-for-video 15 <youtubeurl>
 
 ```
 
