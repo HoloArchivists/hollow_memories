@@ -96,11 +96,10 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 >Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
 
-- The `-N` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but anything beyond 32 
+- The `-N` flag is used to state the amount of threads to use when downloading fragments.
+Higher count will result in faster downloads but anything beyond 32 won't help much.
 
 - The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
-
-> It is recommended to use `--extractor-args "youtube:skip=dash"` as it fixes issues with ffmpeg muxing, [see here](#i-get-a-conversion-failed-error-from-ffmpeg)
 
 - The flags can be combined to form a single command. Example:
 
@@ -212,10 +211,8 @@ it also shows how long a stream was
 New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
 ### I get a Conversion failed! error from FFmpeg
-
-- There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
-- FFmpeg versions before 3.1.4 do not have this issue.
-- you can fix this by using `-S quality,res,fps,proto,codec:vp9.2` which will prefer https+avc over dash+vp9
+- this should be fixed with an up to date ffmpeg version (5.0 or higher)
+- if you still have that problem then you can fix this by using `-S quality,res,fps,proto,codec:vp9.2` which will prefer https+avc over dash+vp9
   or use `--extractor-args "youtube:skip=dash"` to completly ignore dash formats
 
 ### How do I do stuff not mentioned here?

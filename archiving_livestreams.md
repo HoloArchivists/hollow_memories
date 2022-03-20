@@ -4,21 +4,13 @@ This guide covers on how to record ongoing or scheduled livestreams. This is use
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Prerequisites](#prerequisites)
-  - [Installing Python and FFMpeg on Windows](#installing-python-and-ffmpeg-on-windows)
-  - [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
-- [Using ytarchive](#using-ytarchive)
-  - [Saving a normal stream](#saving-a-normal-stream)
-  - [Saving a members only stream](#saving-a-members-only-stream)
-  - [Advanced usage](#advanced-usage)
-- [Troubleshooting/FAQ](#troubleshootingfaq)
-  - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
-  - [When I run `ytarchive` in Command Prompt, I get an infinite loop](#when-i-run-ytarchive-in-command-prompt-i-get-an-infinite-loop)
-  - [How do I use the `.py` file version of ytarchive instead?](#how-do-i-use-the-py-file-version-of-ytarchive-instead)
+- [](#)
+  - [Troubleshooting/FAQ](#troubleshootingfaq)
+    - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
 
 ## Prerequisites
 
-### Installing Python and FFMpeg on Windows
+### Installing FFMpeg on Windows
 
 Follow the guide shown in the [README](README.md#prerequisites)
 
@@ -26,7 +18,6 @@ Follow the guide shown in the [README](README.md#prerequisites)
 
 1. Download ytarchive from <https://github.com/Kethsar/ytarchive/releases/latest>
    - If you get a virus warning on your anti-virus, it's a false-positive. [Read here](https://github.com/Kethsar/ytarchive/issues/9).
-   - Click [here](#how-do-i-use-the-py-file-version-of-ytarchive-instead) if you want to use the .py version instead
 2. Move `ytarchive.exe` to a permanent location (eg. C:\Program Files\ytarchive)
 3. Open Command Prompt in elevated mode
 
@@ -62,7 +53,7 @@ pushd "C:\Path\To\stream"
 
 > Generally when archiving streams for public sharing it is advised to use the `best` quality. You may choose to use 720p or lower if you have bad internet or low diskspace.
 
-7. Once the stream ends, `ytarchive` will automatically mux the stream into an `.mp4` video.
+7. Once the stream ends, `ytarchive` will automatically mux the stream into an `.mp4` videofile.
 
 ### Saving a members only stream
 
@@ -112,11 +103,15 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 - The `-o` flag is used to download the video to a different directory or to name the download file. The available placeholders are
 
 ```text
- id (string): Video identifier
- title (string): Video title
- channel_id (string): ID of the channel
- channel (string): Full name of the channel the livestream is on
- upload_date (string): Technically stream date (YYYYMMDD)
+	id (string): Video identifier
+	url (string): Video URL
+	title (string): Video title
+	channel_id (string): ID of the channel
+	channel (string): Full name of the channel the livestream is on
+	upload_date (string: YYYYMMDD): Technically stream start date, UTC timezone - see note below
+	start_date (string: YYYYMMDD): Stream start date, UTC timezone
+	publish_date (string: YYYYMMDD): Stream publish date, UTC timezone
+	description (string): Video description [disallowed for file name format template]
 ```
 
 You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon).
@@ -126,7 +121,11 @@ You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. 
 - The `-r X` flag is used to re-check if the stream is up every `X` seconds. This is useful for waiting for scheduled livestreams.
 
 - The `--threads X` flag is used to set the number of threads to use for downloading audio and video fragments. A sane number for this would be something between 2 and 8.
-The total number of threads running will be `X` * 2 + 3. Main thread, a thread for each audio and video download, and `X` number of fragment downloaders for both audio and video. Due to Python limitations the ytarchive will never use more than a single CPU core. Setting this above 8 is not recommended. Default is 1.
+The total number of threads running will be `X` * 2 + 3. Main thread, a thread for each audio and video download, and `X` number of fragment downloaders for both audio and video.
+
+	> Setting this to a large number has a chance at causing the download
+	>	to start failing with HTTP 401. Restarting the download with a smaller
+	>	thread count until you no longer get 401s should work. Default is 1.
 
 - The `-t` flag is used to embed the original stream thumbnail in the downloaded video file.
 
@@ -136,20 +135,23 @@ The total number of threads running will be `X` * 2 + 3. Main thread, a thread f
 
 - The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
+
+## using yt-dlp
+
+# WIP <!-- omit in toc -->
+
+yt-dlp added the flags `--wait-for-video` to wait for scheduled streams
+and `--live-from-start` to download a youtube livestream from the start
+
+so downloading a livestream like with ytarchive would look like this
+```cmd
+
+```
+
+
 ## Troubleshooting/FAQ
 
 ### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
 
 - Try reopening a new Command Prompt in administrator mode and verify if they work.
 - Make sure you followed the instructions and installed everything correctly.
-- Try adding `.exe` behind the command (eg. `ytarchive.exe` instead of `ytarchive`).
-
-### When I run `ytarchive` in Command Prompt, I get an infinite loop
-
-- Try ytarchive.exe instead of ytarchive.
-
-### How do I use the `.py` file version of ytarchive instead?
-
-- The `.py` file must be in the directory you want to save the stream to
-- Follow the normal instructions but instead of using the `ytarchive` command use `python ytarchive.py` instead.
-- The `ytarchive.ps1` script will not work with the `.py` file version.
