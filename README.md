@@ -32,8 +32,7 @@ This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams
 2. Run the following command in PowerShell by pasting it in(CTRL+V) and pressing enter.
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; `
-  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
 3. Restart PowerShell, then verify chocolatey has been installed by running the command `choco -?`.
@@ -74,9 +73,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 - The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/yt-dlp/yt-dlp#output-template).
 
-> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
-
-> Using the filename `[%(upload_date)s] %(title)s [%(uploader)s] (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
+> Using a filename like `[%(upload_date)s] %(title)s [%(uploader)s] (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
 - The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
@@ -132,30 +129,18 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb 
 ### Downloading members only videos
 
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
-
-1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract your cookies from YouTube which will be used to authenticate `yt-dlp`.
-2. Open Youtube then click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
-
-> Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube Account.
-
-3. Add `--cookies C:\Path\To\youtube.com_cookies.txt` at the end of any command and replace `C:\Path\To\youtube.com_cookies.txt` with the path to your cookie file. Example:
+use `--cookies-from-browser <BROWSER>` and it will automatically use any cookies you have in your browser
+the syntax for it is `--cookies-from-browser BROWSER[+KEYRING][:PROFILE]`
 
 ```powershell
-yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
+yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies-from-browser chrome
 ```
-
->You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
 
 ### Setting-up a default config
 
-If you find yourself using the same flags 99% of the time, you can choose to set-up a default config so that you do not need to type the flags you always use.
-
-1. Go to your appdata folder
-    - Open the start menu by pressing the ⊞ windows key, type `%APPDATA%` and click on the folder.
-2. Make a new folder with the name `yt-dlp`
-3. Create a text file in the folder created with the name `config.txt`
-4. Edit the `config.txt` file with your desired flags. Feel free to refer to this example [config.txt](config.txt) that has commonly-used flags.
-5. Download videos with ease in the future.
+if you have settings you always use and don't want to type them in everytime then you can use a config file
+please refer to the yt-dlp documentation here <https://github.com/yt-dlp/yt-dlp#configuration>
+you can find and example config there and one that I made [here](config.txt)
 
 ## Downloading entire channels
 
@@ -211,6 +196,7 @@ it also shows how long a stream was
 New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
 ### I get a Conversion failed! error from FFmpeg
+
 - this should be fixed with an up to date ffmpeg version (5.0 or higher)
 - if you still have that problem then you can fix this by using `-S quality,res,fps,proto,codec:vp9.2` which will prefer https+avc over dash+vp9
   or use `--extractor-args "youtube:skip=dash"` to completly ignore dash formats

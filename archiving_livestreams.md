@@ -2,11 +2,18 @@
 
 This guide covers on how to record ongoing or scheduled livestreams. This is useful for streams that will not be archived later on.
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents  <!-- omit in toc -->
 
-- [](#)
-  - [Troubleshooting/FAQ](#troubleshootingfaq)
-    - [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
+- [Prerequisites](#prerequisites)
+	- [Installing FFMpeg on Windows](#installing-ffmpeg-on-windows)
+	- [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
+- [Using ytarchive](#using-ytarchive)
+	- [Saving a normal stream](#saving-a-normal-stream)
+	- [Saving a members only stream](#saving-a-members-only-stream)
+	- [Advanced usage](#advanced-usage)
+- [using yt-dlp](#using-yt-dlp)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
+	- [When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`](#when-i-run-a-command-in-command-prompt-i-get-xxxx-is-not-recognized-as-an-internal-or-external-command-operable-program-or-batch-file)
 
 ## Prerequisites
 
@@ -59,10 +66,12 @@ pushd "C:\Path\To\stream"
 
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
 
-1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
-2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
+> NOTE: the extention for chrome has recently been delete by google, i will add an alternative once i find one
 
-> Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
+1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
+2. go to `youtube.com` then click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
+
+> Please note that cookies can give someone full access to your account, do NOT share them.
 
 3. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
 
@@ -103,29 +112,29 @@ ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 - The `-o` flag is used to download the video to a different directory or to name the download file. The available placeholders are
 
 ```text
-	id (string): Video identifier
-	url (string): Video URL
-	title (string): Video title
-	channel_id (string): ID of the channel
-	channel (string): Full name of the channel the livestream is on
-	upload_date (string: YYYYMMDD): Technically stream start date, UTC timezone - see note below
-	start_date (string: YYYYMMDD): Stream start date, UTC timezone
-	publish_date (string: YYYYMMDD): Stream publish date, UTC timezone
-	description (string): Video description [disallowed for file name format template]
+ id (string): Video identifier
+ url (string): Video URL
+ title (string): Video title
+ channel_id (string): ID of the channel
+ channel (string): Full name of the channel the livestream is on
+ upload_date (string: YYYYMMDD): Technically stream start date, UTC timezone - see note below
+ start_date (string: YYYYMMDD): Stream start date, UTC timezone
+ publish_date (string: YYYYMMDD): Stream publish date, UTC timezone
+ description (string): Video description [disallowed for file name format template]
 ```
 
 You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon).
 
 > Using the filename `[%(channel)s][%(upload_date)s] %(title)s (%(id)s)` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
-- The `-r X` flag is used to re-check if the stream is up every `X` seconds. This is useful for waiting for scheduled livestreams.
+- The `-r X` flag is used to re-check if the stream is up every `X` seconds. You can use this for streams that might start earlier than scheduled
 
 - The `--threads X` flag is used to set the number of threads to use for downloading audio and video fragments. A sane number for this would be something between 2 and 8.
 The total number of threads running will be `X` * 2 + 3. Main thread, a thread for each audio and video download, and `X` number of fragment downloaders for both audio and video.
 
-	> Setting this to a large number has a chance at causing the download
-	>	to start failing with HTTP 401. Restarting the download with a smaller
-	>	thread count until you no longer get 401s should work. Default is 1.
+ > Setting this to a large number has a chance at causing the download
+ > to start failing with HTTP 401. Restarting the download with a smaller
+ > thread count until you no longer get 401s should work. Default is 1.
 
 - The `-t` flag is used to embed the original stream thumbnail in the downloaded video file.
 
@@ -135,24 +144,19 @@ The total number of threads running will be `X` * 2 + 3. Main thread, a thread f
 
 - The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
-
 ## using yt-dlp
 
-# WIP <!-- omit in toc -->
+yt-dlp has added new flags that can make it function similar to ytarchive, though its currently considered broken
 
-yt-dlp added the flags `--wait-for-video` to wait for scheduled streams
-and `--live-from-start` to download a youtube livestream from the start
+`--wait-for-video <DelayInSeconds>` to wait for scheduled streams
+and `--live-from-start` to start downloading from the start
 
-so downloading a livestream like with ytarchive would look like this
 ```cmd
 yt-dlp --live-from-start --wait-for-video 15 <youtubeurl>
-
 ```
-
 
 ## Troubleshooting/FAQ
 
-### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`
 
-- Try reopening a new Command Prompt in administrator mode and verify if they work.
-- Make sure you followed the instructions and installed everything correctly.
+- try reopen cmd/powershell they need to be restarted for new installed programs to be recognized

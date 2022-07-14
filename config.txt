@@ -1,10 +1,4 @@
-###
-# yt-dlp configuration file
-# Read https://github.com/Lytexx/hollow_memories#setting-up-a-default-config
-# to learn how to edit this config file
-###
-
-# Save video file as mp4
+# merge or remux into mp4
 --merge-output-format mp4
 --remux-video mp4
 
