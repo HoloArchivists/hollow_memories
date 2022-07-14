@@ -149,9 +149,7 @@ you can find and example config there and one that I made [here](config.txt)
 ## Downloading livestreams
 
 Livestreams can be downloaded as they are airing.
-
 They can also be downloaded from the beginning even if you start downloading mid-stream.
-
 This is useful for unarchived livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
@@ -193,7 +191,7 @@ it also shows how long a stream was
 
 ### How do I get the highest quality video and audio available?
 
-New versions of yt-dlp will automatically pick the best quality available without any extra command options.
+yt-dlp will automatically pick the best quality available without any extra command options.
 
 ### I get a Conversion failed! error from FFmpeg
 

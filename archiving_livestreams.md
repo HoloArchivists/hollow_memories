@@ -66,7 +66,7 @@ pushd "C:\Path\To\stream"
 
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
 
-> NOTE: the extention for chrome has recently been delete by google, i will add an alternative once i find one
+> NOTE: the extention for chrome has recently been deleted by google, i will add an alternative once i find one
 
 1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
 2. go to `youtube.com` then click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
